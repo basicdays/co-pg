@@ -1,5 +1,8 @@
 # node.js
 node_modules
 
+# local config files
+config.json
+
 # IDE files
 .idea

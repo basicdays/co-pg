@@ -1,0 +1,29 @@
+{
+	"curly": true,
+	"immed": true,
+	"indent": 4,
+	"latedef": "nofunc",
+	"newcap": true,
+	"noarg": true,
+	"strict": true,
+	"trailing": true,
+
+	"boss": true,
+	"debug": true,
+	"esnext": true,
+	"evil": true,
+	"expr": true,
+	"globalstrict": true,
+	"multistr": true,
+	"smarttabs": true,
+
+	"devel": true,
+	"node": true,
+	"globals": {
+		"mocha": true,
+		"describe": true,
+		"before": true,
+		"it": true,
+		"emit": true
+	}
+}

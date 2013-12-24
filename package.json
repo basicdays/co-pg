@@ -1,34 +1,37 @@
 {
-	"name": "co-pg",
-	"version": "0.1.0",
-	"description": "Co wrapper for node-postgres",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/basicdays/co-pg.git"
-	},
-	"main": "./lib",
-	"keywords": [
-		"async",
-		"generator",
-		"coroutine",
-		"co",
-		"postgresql",
-		"postgres",
-		"pg"
-	],
-	"author": "basicdays <info@basicdays.com> (http://basicdays.com)",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/basicdays/co-pg/issues"
-	},
-	"homepage": "https://github.com/basicdays/co-pg",
-	"dependencies": {
-		"pg": "~2.8.4",
-		"thunkify": "0.0.1"
-	},
-	"devDependencies": {
-		"mocha": "~1.14.0",
-		"chai": "~1.8.1",
-		"jshint": "~2.3.0"
-	}
+  "name": "co-pg",
+  "version": "0.1.0",
+  "description": "Co wrapper for node-postgres",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/basicdays/co-pg.git"
+  },
+  "main": "./lib",
+  "keywords": [
+    "async",
+    "generator",
+    "coroutine",
+    "co",
+    "postgresql",
+    "postgres",
+    "pg"
+  ],
+  "author": "basicdays <info@basicdays.com> (http://basicdays.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basicdays/co-pg/issues"
+  },
+  "homepage": "https://github.com/basicdays/co-pg",
+  "dependencies": {
+    "pg": "~2.8.4",
+    "thunkify": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "chai": "~1.8.1",
+    "jshint": "~2.3.0",
+    "co": "~3.0.1",
+    "co-fs": "~1.1.1",
+    "commander": "~2.1.0"
+  }
 }
