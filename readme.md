@@ -45,11 +45,10 @@ co(function *connectExample() {
 
 		var result = yield client.query_('SELECT NOW() AS "theTime"');
 		console.log(result.rows[0].theTime);
-		//output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
 
 		client.end();
 	} catch(ex) {
-		console.error(ex);
+		console.error(ex.toString());
 	}
 })();
 ```
@@ -72,14 +71,13 @@ co(function *poolExample() {
 		var done = connectionResults[0];
 		var client = connectionResults[1];
 
-		var result = client.query_('SELECT $1::int AS number', ['1']);
+		var result = yield client.query_('select now() as "theTime"');
 		//call `done()` to release the client back to the pool
 		done();
 
-		console.log(result.rows[0].number);
-		//output: 1
+		console.log(result.rows[0].theTime);
 	} catch(ex) {
-		console.error(ex);
+		console.error(ex.toString());
 	}
 })();
 ```
