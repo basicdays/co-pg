@@ -1,6 +1,6 @@
 'use strict';
 var co = require('co'),
-    pg = require('../'),
+    pg = require('../')(require('pg')),
     testHelper = require('../test/test-helper');
 
 co(function *connectExample() {

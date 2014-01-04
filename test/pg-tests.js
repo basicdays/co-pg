@@ -1,7 +1,7 @@
 'use strict';
 var co = require('co'),
     should = require('chai').should(),
-    pg = require('../lib'),
+    pg = require('../lib')(require('pg')),
     testHelper = require('./test-helper');
 
 

@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/basicdays/co-pg",
   "dependencies": {
-    "pg": "~2.8.4",
     "thunkify": "0.0.1"
   },
   "devDependencies": {
+    "pg": "~2.8.4",
     "mocha": "~1.14.0",
     "chai": "~1.8.1",
     "jshint": "~2.3.0",

@@ -1,8 +1,7 @@
 'use strict';
 var co = require('co'),
     should = require('chai').should(),
-    pg = require('../lib'),
-    Client = pg.Client,
+    pg = require('../lib')(require('pg')),
     testHelper = require('./test-helper');
 
 
@@ -21,7 +20,7 @@ describe('CoClient', function() {
 	describe('#connect_()', function() {
 		it('should connect with a single connection', function(done) {
 			co(function *() {
-				var client = new Client(connString);
+				var client = new pg.Client(connString);
 
 				yield client.connect_();
 
@@ -33,7 +32,7 @@ describe('CoClient', function() {
 	describe('#query_()', function() {
 		it('should query with single connection', function(done) {
 			co(function *() {
-				var client = new Client(connString);
+				var client = new pg.Client(connString);
 				yield client.connect_();
 
 				var result = yield client.query_(query);
