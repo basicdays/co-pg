@@ -34,7 +34,7 @@ Connect to a postgres instance, run a query, and disconnect, using `co`.
 
 ```js
 var co = require('co'),
-    pg = require('co-pg');
+    pg = require('co-pg')(require('pg'));
 
 var connectionString = 'postgres://postgres:1234@localhost/postgres';
 
@@ -61,7 +61,7 @@ into separate variables for cleaner code.
 
 ```js
 var co = require('co'),
-    pg = require('co-pg');
+    pg = require('co-pg')(require('pg'));
 
 var connectionString = 'postgres://postgres:1234@localhost/postgres';
 
