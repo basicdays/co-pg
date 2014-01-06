@@ -68,8 +68,8 @@ var connectionString = 'postgres://postgres:1234@localhost/postgres';
 co(function *poolExample() {
 	try {
 		var connectionResults = yield pg.connect_(connectionString);
-		var done = connectionResults[0];
-		var client = connectionResults[1];
+		var client = connectionResults[0];
+		var done = connectionResults[1];
 
 		var result = yield client.query_('select now() as "theTime"');
 		//call `done()` to release the client back to the pool
