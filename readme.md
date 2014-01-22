@@ -1,6 +1,6 @@
 # co-pg
 
-[Co](https://github.com/visionmedia/co) wrapper for [node-postgres](https://github.com/brianc/node-postgres)
+[Co](visionmedia/co) wrapper for [node-postgres](brianc/node-postgres)
 
 ## Installation
 
@@ -15,7 +15,7 @@ from `pg` is also available on `co-pg` with no alterations to the original API. 
 callback style interface also have companion thunk methods that are usable by `co`, indicated with a trailing
 underscore.
 
-Supports brianc/node-postgres both js and native, as well as brianc/node-postgres-pure.
+Supports [brianc/node-postgres] both js and native, as well as [brianc/node-postgres-pure].
 
 ## API Additions
 
@@ -86,9 +86,9 @@ co(function *poolExample() {
 
 ## Other projects
 
-- brianc/node-postgres: the PostgreSQL driver
-- brianc/node-postgres-pure: js only PostgreSQL drive
-- chilts/koa-pg: koa middleware using co-pg
+- [brianc/node-postgres]: the PostgreSQL driver
+- [brianc/node-postgres-pure]: js only PostgreSQL drive
+- [chilts/koa-pg]: koa middleware using co-pg
 
 ## License
 MIT
