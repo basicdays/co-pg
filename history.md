@@ -1,3 +1,8 @@
+1.2.3 / 2014-01-22
+==================
+
+ * Info: Added tests to ensure support for node-postgres-pure project, no fixes were necessary
+
 
 1.2.2 / 2014-01-08
 ==================
