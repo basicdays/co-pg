@@ -15,6 +15,8 @@ from `pg` is also available on `co-pg` with no alterations to the original API. 
 callback style interface also have companion thunk methods that are usable by `co`, indicated with a trailing
 underscore.
 
+Supports brianc/node-postgres both js and native, as well as brianc/node-postgres-pure.
+
 ## API Additions
 
 `co-pg` adds a few additional methods on top of the `pg` API.
@@ -84,12 +86,9 @@ co(function *poolExample() {
 
 ## Other projects
 
-- [brianc/node-postgres](https://github.com/brianc/node-postgres): the PostgreSQL driver
-- [chilts/koa-pg](https://github.com/chilts/koa-pg): koa middleware using co-pg
-
-## Todo
-
-- Provide code documentation written with [dox](https://github.com/visionmedia/dox).
+- brianc/node-postgres: the PostgreSQL driver
+- brianc/node-postgres-pure: js only PostgreSQL drive
+- chilts/koa-pg: koa middleware using co-pg
 
 ## License
 MIT

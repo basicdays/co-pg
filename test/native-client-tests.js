@@ -1,3 +1,4 @@
+/* global describe, before, it */
 'use strict';
 var co = require('co'),
 		should = require('chai').should(),

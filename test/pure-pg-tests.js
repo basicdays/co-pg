@@ -1,12 +1,12 @@
 /* global describe, before, it */
 'use strict';
 var co = require('co'),
-    should = require('chai').should(),
-    pg = require('../lib')(require('pg')),
-    testHelper = require('./test-helper');
+		should = require('chai').should(),
+		pg = require('../lib')(require('pg.js')),
+		testHelper = require('./test-helper');
 
 
-describe('CoPG', function() {
+describe('CoPG-Pure', function() {
 	var connString = null;
 
 	before(function(done) {

@@ -18,12 +18,5 @@
 	"smarttabs": true,
 
 	"devel": true,
-	"node": true,
-	"globals": {
-		"mocha": true,
-		"describe": true,
-		"before": true,
-		"it": true,
-		"emit": true
-	}
+	"node": true
 }

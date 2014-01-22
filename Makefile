@@ -1,23 +1,19 @@
 export PATH := bin:node_modules/.bin:$(PATH)
 
-.PHONY: all build test test-lint test-unit
+.PHONY: build test test-lint test-unit
 
-all: build
+build: node_modules
 
-build:
+node_modules:
 	@npm install
 
 test: test-lint test-unit
 
 test-lint:
-	@echo running jshint
-	@jshint **/*.js
+	@jshint .
 
 test-unit:
 	@mocha --harmony-generators --reporter=spec --timeout 2s
 
-doc:
-	@find ./lib -name "*.js" | xargs -n 1 -I file sh -c "dox < file"
-
-clean:
-	@rm -rf doc
+nuke:
+	@rm -rf node_modules
