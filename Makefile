@@ -1,19 +1,19 @@
 export PATH := bin:node_modules/.bin:$(PATH)
 
-.PHONY: build test test-lint test-unit
-
+.PHONY: build
 build: node_modules
 
-node_modules:
+node_modules: package.json
 	@npm install
 
-test: test-lint test-unit
-
-test-lint:
-	@jshint .
-
-test-unit:
+.PHONY: test
+test: lint
 	@mocha --harmony-generators --reporter=spec --timeout 2s
 
-nuke:
+.PHONY: lint
+lint:
+	@jshint .
+
+.PHONY: clean
+clean:
 	@rm -rf node_modules
