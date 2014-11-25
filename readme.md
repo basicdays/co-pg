@@ -41,19 +41,19 @@ var co = require('co'),
 
 var connectionString = 'postgres://postgres:1234@localhost/postgres';
 
-co(function *connectExample() {
+co(function* connectExample() {
 	try {
 		var client = new pg.Client(connectionString);
-		yield client.connect_();
+		yield client.connectPromise();
 
-		var result = yield client.query_('SELECT NOW() AS "theTime"');
+		var result = yield client.queryPromise('SELECT NOW() AS "theTime"');
 		console.log(result.rows[0].theTime);
 
 		client.end();
 	} catch(ex) {
 		console.error(ex.toString());
 	}
-})();
+});
 ```
 
 ### Client pooling
@@ -68,13 +68,13 @@ var co = require('co'),
 
 var connectionString = 'postgres://postgres:1234@localhost/postgres';
 
-co(function *poolExample() {
+co(function* poolExample() {
 	try {
-		var connectionResults = yield pg.connect_(connectionString);
+		var connectionResults = yield pg.connectPromise(connectionString);
 		var client = connectionResults[0];
 		var done = connectionResults[1];
 
-		var result = yield client.query_('select now() as "theTime"');
+		var result = yield client.queryPromise('select now() as "theTime"');
 		//call `done()` to release the client back to the pool
 		done();
 
@@ -82,7 +82,7 @@ co(function *poolExample() {
 	} catch(ex) {
 		console.error(ex.toString());
 	}
-})();
+});
 ```
 
 ## Other projects

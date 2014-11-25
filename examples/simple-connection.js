@@ -1,20 +1,21 @@
+#!/usr/bin/env node
 'use strict';
 var co = require('co'),
     pg = require('../')(require('pg')),
     testHelper = require('../test/test-helper');
 
-co(function *connectExample() {
+co(function* connectExample() {
 	try {
 		var config = yield testHelper.getConfig();
 
 		var client = new pg.Client(config.connectionStrings.main);
-		yield client.connect_();
+		yield client.connectPromise();
 
-		var result = yield client.query_('select now() as "theTime"');
+		var result = yield client.queryPromise('select now() as "theTime"');
 		console.log(result.rows[0].theTime);
 
 		client.end();
 	} catch(ex) {
 		console.error(ex);
 	}
-})();
+});

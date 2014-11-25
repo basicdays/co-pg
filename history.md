@@ -1,3 +1,11 @@
+1.3.0 / 2014-11-24
+==================
+
+ * Feature: Added connectPromise and queryPromise functions
+ * Feature: Updated all dependencies
+ * Info: Updated all Dev Dependencies, now tested on co ^4.0.0
+ * Deprecated: connect_ and query_ functions, the co project has opted to prefer the promise style
+
 1.2.3 / 2014-01-22
 ==================
 

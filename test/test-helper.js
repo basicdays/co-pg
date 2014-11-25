@@ -16,7 +16,7 @@ exports.getConfig = function() {
 	};
 };
 
-co(function *readConfig() {
+co(function* readConfig() {
 	var file = yield fs.readFile('config.json', 'utf8');
 	config = JSON.parse(file);
 	configEmitter.emit('parse', null, config);

@@ -9,23 +9,36 @@ var co = require('co'),
 describe('CoPG', function() {
 	var connString = null;
 
-	before(function(done) {
-		co(function *() {
+	before(function() {
+		return co(function*() {
 			var config = yield testHelper.getConfig();
 			connString = config.connectionStrings.main;
-		})(done);
+		});
+	});
+
+	describe('#connectPromise()', function() {
+		it('should connect a pool', function() {
+			return co(function*() {
+				var results = yield pg.connectPromise(connString);
+				var client = results[0];
+				var clientDone = results[1];
+
+				should.exist(client);
+				clientDone();
+			});
+		});
 	});
 
 	describe('#connect_()', function() {
-		it('should connect a pool', function(done) {
-			co(function *() {
+		it('should connect a pool', function() {
+			return co(function*() {
 				var results = yield pg.connect_(connString);
 				var client = results[0];
 				var clientDone = results[1];
 
 				should.exist(client);
 				clientDone();
-			})(done);
+			});
 		});
 	});
 });
