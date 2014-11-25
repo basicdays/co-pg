@@ -12,8 +12,10 @@ $ npm install co-pg
 
 `co-pg` works by directly inheriting from the prototypes within the `pg` package. Everything that is available
 from `pg` is also available on `co-pg` with no alterations to the original API. The `pg` API methods that use a
-callback style interface also have companion thunk methods that are usable by `co`, indicated with a trailing
-underscore.
+callback style interface also have companion promise methods that are usable by `co` 4.0.
+
+Former "thunk" methods are still supported in 1.0 and are usable by all versions of co. However they have been
+deprecated.
 
 Supports [node-postgres](https://github.com/brianc/node-postgres) both js and native,
 as well as [node-postgres-pure](https://github.com/brianc/node-postgres-pure).
@@ -22,11 +24,13 @@ as well as [node-postgres-pure](https://github.com/brianc/node-postgres-pure).
 
 `co-pg` adds a few additional methods on top of the `pg` API.
 
- - `PG` prototype adds the `#connect_` thunk method
- - `Client` prototype adds the `#connect_` and `#query_` thunk methods
+ - `PG` prototype adds the `#connectPromise` method
+ - `Client` prototype adds the `#connectPromise` and `#queryPromise` methods
+ - `PG` prototype adds the `#connect_` thunk method (deprecated)
+ - `Client` prototype adds the `#connect_` and `#query_` thunk methods (deprecated)
 
 These methods behave exactly the same as their counter-parts, including their arguments, except instead of
-supplying a callback, the method is yielded. All the original methods are still available by using the
+supplying a callback, the promise is yielded. All the original methods are still available by using the
 sans-underscore methods.
 
 ## Examples
@@ -46,7 +50,7 @@ co(function* connectExample() {
 		var client = new pg.Client(connectionString);
 		yield client.connectPromise();
 
-		var result = yield client.queryPromise('SELECT NOW() AS "theTime"');
+		var result = yield client.queryPromise('select now() as "theTime"');
 		console.log(result.rows[0].theTime);
 
 		client.end();
