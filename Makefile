@@ -15,5 +15,5 @@ lint:
 	@jshint .
 
 .PHONY: clean
-clean:
+maintainer-clean:
 	@rm -rf node_modules
