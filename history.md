@@ -1,3 +1,8 @@
+1.3.1 / 2014-12-01
+==================
+
+ * Info: Changed to use `promissory` npm package to create underlying promises
+
 1.3.0 / 2014-11-24
 ==================
 

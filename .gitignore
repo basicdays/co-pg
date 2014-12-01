@@ -1,5 +1,6 @@
 # node.js
 node_modules
+*.log
 
 # local config files
 config.json
