@@ -1,11 +1,11 @@
 'use strict';
-var EventEmitter = require('events').EventEmitter,
-    co = require('co'),
-    fs = require('co-fs');
+let EventEmitter = require('events').EventEmitter;
+let co = require('co');
+let fs = require('co-fs');
 
 
-var configEmitter = new EventEmitter();
-var config = null;
+let configEmitter = new EventEmitter();
+let config = null;
 exports.getConfig = function() {
 	return function(next) {
 		if (config) {
@@ -17,7 +17,7 @@ exports.getConfig = function() {
 };
 
 co(function* readConfig() {
-	var file = yield fs.readFile('config.json', 'utf8');
+	let file = yield fs.readFile('config.json', 'utf8');
 	config = JSON.parse(file);
 	configEmitter.emit('parse', null, config);
 });

@@ -1,3 +1,12 @@
+2.0.0 / 2016-04-03
+==================
+
+ * Breaking: Removed thunk methods to reduce dependencies on outside projects
+ * Feature: Added `Async` suffixed methods, which as the same as the old `Promise`
+   suffixed methods
+ * Info: Tested on latest `pg` drivers (4.0), and on node v0.12, v4, and v5
+ * Info: Added Vagrantfile environment to help future testing
+
 1.3.1 / 2014-12-01
 ==================
 

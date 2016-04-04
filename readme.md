@@ -1,6 +1,8 @@
 # co-pg
 
-[Co](https://github.com/visionmedia/co) wrapper for [node-postgres](https://github.com/brianc/node-postgres)
+[Co](https://github.com/visionmedia/co) wrapper for [node-postgres](https://github.com/brianc/node-postgres).
+Also supports ESNext's async/await.
+
 
 ## Installation
 
@@ -8,30 +10,39 @@
 $ npm install co-pg
 ```
 
+
 ## Overview
 
-`co-pg` works by directly inheriting from the prototypes within the `pg` package. Everything that is available
+`co-pg` provides higher order functions that will return a wrapped edition of `pg`. Everything that is available
 from `pg` is also available on `co-pg` with no alterations to the original API. The `pg` API methods that use a
-callback style interface also have companion promise methods that are usable by `co` 4.0.
+callback style interface also have companion promise methods that are usable by `co` 4.0 and by ESNext async/await.
 
-Former "thunk" methods are still supported in 1.0 and are usable by all versions of co. However they have been
-deprecated.
+Supports:
 
-Supports [node-postgres](https://github.com/brianc/node-postgres) both js and native,
-as well as [node-postgres-pure](https://github.com/brianc/node-postgres-pure).
+- [node-postgres](https://github.com/brianc/node-postgres)
+- [node-pg-native](https://github.com/brianc/node-pg-native)
+- [node-postgres-pure](https://github.com/brianc/node-postgres-pure) (even though it has been deprecated)
+
+Supports Node Engines:
+
+- v0.12 (requires `--harmony` flag to work)
+- v4
+- v5
+
 
 ## API Additions
 
 `co-pg` adds a few additional methods on top of the `pg` API.
 
- - `PG` prototype adds the `#connectPromise` method
- - `Client` prototype adds the `#connectPromise` and `#queryPromise` methods
- - `PG` prototype adds the `#connect_` thunk method (deprecated)
- - `Client` prototype adds the `#connect_` and `#query_` thunk methods (deprecated)
+ - `PG` prototype adds the `#connectAsync` method
+   - also includes `#connectPromise` which aliases `#connectAsync`
+ - `Client` prototype adds the `#connectAsync` and `#queryAsync` methods
+   - also includes `#connectPromise` which aliases `#connectAsync`
+   - also includes `#queryPromise` which aliases `#queryAsync`
 
 These methods behave exactly the same as their counter-parts, including their arguments, except instead of
 supplying a callback, the promise is yielded. All the original methods are still available by using the
-sans-underscore methods.
+sans-underscore methods. For documentation or help on how they work, please see the original project's documentation.
 
 ## Examples
 
@@ -40,22 +51,22 @@ sans-underscore methods.
 Connect to a postgres instance, run a query, and disconnect, using `co`.
 
 ```js
-var co = require('co'),
-    pg = require('co-pg')(require('pg'));
+let co = require('co');
+let pg = require('co-pg')(require('pg'));
 
-var connectionString = 'postgres://postgres:1234@localhost/postgres';
+let connectionString = 'postgres://postgres:1234@localhost/postgres';
 
 co(function* connectExample() {
 	try {
-		var client = new pg.Client(connectionString);
+		let client = new pg.Client(connectionString);
 		yield client.connectPromise();
 
-		var result = yield client.queryPromise('select now() as "theTime"');
+		let result = yield client.queryPromise('select now() as "theTime"');
 		console.log(result.rows[0].theTime);
 
 		client.end();
-	} catch(ex) {
-		console.error(ex.toString());
+	} catch (ex) {
+		console.error(ex);
 	}
 });
 ```
@@ -67,23 +78,24 @@ returns multiple objects, the return value is an array of those results. They ca
 into separate variables for cleaner code.
 
 ```js
-var co = require('co'),
-    pg = require('co-pg')(require('pg'));
+let co = require('co');
+let pg = require('../')(require('pg'));
 
-var connectionString = 'postgres://postgres:1234@localhost/postgres';
+let connectionString = 'postgres://postgres:1234@localhost/postgres';
 
 co(function* poolExample() {
 	try {
-		var connectionResults = yield pg.connectPromise(connectionString);
-		var client = connectionResults[0];
-		var done = connectionResults[1];
+		let connectResults = yield pg.connectPromise(connectionString);
+		let client = connectResults[0];
+		let done = connectResults[1];
 
-		var result = yield client.queryPromise('select now() as "theTime"');
+		let result = yield client.queryPromise('select now() as "theTime"');
 		//call `done()` to release the client back to the pool
 		done();
 
 		console.log(result.rows[0].theTime);
-	} catch(ex) {
+		process.exit();
+	} catch (ex) {
 		console.error(ex.toString());
 	}
 });
@@ -92,8 +104,7 @@ co(function* poolExample() {
 ## Other projects
 
 - [brianc/node-postgres](https://github.com/brianc/node-postgres): the PostgreSQL driver
-- [brianc/node-postgres-pure](https://github.com/brianc/node-postgres-pure): js only PostgreSQL drive
-- [chilts/koa-pg](https://github.com/chilts/koa-pg): koa middleware using co-pg
+- [brianc/node-pg-native](https://github.com/brianc/node-pg-native): the PostgreSQL drive using native bindings
 
 ## License
 MIT

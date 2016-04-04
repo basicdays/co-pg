@@ -1,19 +1,25 @@
-export PATH := bin:node_modules/.bin:$(PATH)
+export PATH := bin:node_modules/.bin:${PATH}
 
-.PHONY: build
+npm_flags := --loglevel=http --progress=false
+
 build: node_modules
 
 node_modules: package.json
-	@npm install
+	@npm install ${npm_flags}
 
-.PHONY: test
-test: lint
-	@mocha --harmony-generators --reporter=spec --timeout 2s
+test: build
+	@mocha --harmony --timeout 2s --require=test
 
-.PHONY: lint
-lint:
-	@jshint .
+lint: jscs eslint
 
-.PHONY: clean
+jscs:
+	jscs .
+
+eslint:
+	eslint .
+
 maintainer-clean:
 	@rm -rf node_modules
+
+
+.PHONY: build test jshint maintainer-clean

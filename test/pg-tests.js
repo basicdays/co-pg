@@ -1,27 +1,26 @@
-/* global describe, before, it */
 'use strict';
-var co = require('co'),
-    should = require('chai').should(),
-    pg = require('../lib')(require('pg')),
-    testHelper = require('./test-helper');
+let co = require('co');
+let should = require('chai').should();
+let pg = require('../lib')(require('pg'));
+let testHelper = require('./test-helper');
 
 
 describe('CoPG', function() {
-	var connString = null;
+	let connString = null;
 
 	before(function() {
 		return co(function*() {
-			var config = yield testHelper.getConfig();
+			let config = yield testHelper.getConfig();
 			connString = config.connectionStrings.main;
 		});
 	});
 
-	describe('#connectPromise()', function() {
+	describe('#connectAsync()', function() {
 		it('should connect a pool', function() {
 			return co(function*() {
-				var results = yield pg.connectPromise(connString);
-				var client = results[0];
-				var clientDone = results[1];
+				let results = yield pg.connectAsync(connString);
+				let client = results[0];
+				let clientDone = results[1];
 
 				should.exist(client);
 				clientDone();
@@ -29,16 +28,9 @@ describe('CoPG', function() {
 		});
 	});
 
-	describe('#connect_()', function() {
-		it('should connect a pool', function() {
-			return co(function*() {
-				var results = yield pg.connect_(connString);
-				var client = results[0];
-				var clientDone = results[1];
-
-				should.exist(client);
-				clientDone();
-			});
+	describe('#connectPromise()', function() {
+		it('should be an alias to #connectAsync', function() {
+			pg.connectPromise.should.equal(pg.connectAsync);
 		});
 	});
 });

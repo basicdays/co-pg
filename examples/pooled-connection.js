@@ -1,24 +1,24 @@
 #!/usr/bin/env node
 'use strict';
-var co = require('co'),
-    pg = require('../')(require('pg')),
-    testHelper = require('../test/test-helper');
+let co = require('co');
+let pg = require('../')(require('pg'));
+let testHelper = require('../test/test-helper');
 
 co(function* poolExample() {
 	try {
-		var config = yield testHelper.getConfig();
+		let config = yield testHelper.getConfig();
 
-		var connectResults = yield pg.connectPromise(config.connectionStrings.main);
-		var client = connectResults[0];
-		var done = connectResults[1];
+		let connectResults = yield pg.connectPromise(config.connectionStrings.main);
+		let client = connectResults[0];
+		let done = connectResults[1];
 
-		var result = yield client.queryPromise('select now() as "theTime"');
+		let result = yield client.queryPromise('select now() as "theTime"');
 		//call `done()` to release the client back to the pool
 		done();
 
 		console.log(result.rows[0].theTime);
 		process.exit();
-	} catch(ex) {
+	} catch (ex) {
 		console.error(ex.toString());
 	}
 });
