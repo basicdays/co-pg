@@ -1,0 +1,9 @@
+{
+	"preset": "airbnb",
+	"disallowMultipleLineBreaks": false,
+	"maximumLineLength": 120,
+	"requirePaddingNewLinesAfterBlocks": false,
+	"requirePaddingNewLinesBeforeLineComments": false,
+	"requireSpacesInAnonymousFunctionExpression": false,
+	"validateIndentation": "\t"
+}

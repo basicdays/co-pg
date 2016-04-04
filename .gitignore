@@ -1,9 +1,22 @@
 # node.js
-node_modules
-*.log
+/config.json
+node_modules/
+npm-debug.log
 
-# local config files
-config.json
+# editors
+/.idea/dictionaries/
+/.idea/*.local.xml
+/.idea/workspace.xml
+*.kate-swp
+*.swp
+*~
 
-# IDE files
-.idea
+# git
+*.orig
+
+# vagrant
+/.vagrant/
+
+# file managers
+.DS_Store
+.directory

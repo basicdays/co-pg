@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
-var fs = require('fs'),
-    program = require('commander');
+let fs = require('fs');
+let program = require('commander');
 
 
 program
@@ -9,15 +9,15 @@ program
 	.parse(process.argv);
 
 
-var config = {
+let config = {
 	connectionStrings: {
 		main: {
-			database: 'node_postgres',
-			host: program.connectionString
-		}
-	}
+			database: 'co_pg',
+			host: program.connectionString,
+		},
+	},
 };
-var configJson = JSON.stringify(config, null, '\t');
+let configJson = JSON.stringify(config, null, '\t');
 fs.writeFile('config.json', configJson, 'utf8', function(err) {
 	if (err) { throw (err); }
 });
