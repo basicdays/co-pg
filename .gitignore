@@ -1,7 +1,9 @@
 # node.js
+/package/
 /config.json
 node_modules/
 npm-debug.log
+*.tgz
 
 # editors
 /.idea/dictionaries/

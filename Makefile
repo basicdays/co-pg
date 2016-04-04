@@ -18,8 +18,11 @@ jscs:
 eslint:
 	eslint .
 
-maintainer-clean:
+clean:
+	@rm -rf package *.tgz
+
+maintainer-clean: clean
 	@rm -rf node_modules
 
 
-.PHONY: build test jshint maintainer-clean
+.PHONY: build test jshint clean maintainer-clean
