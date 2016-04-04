@@ -17,80 +17,50 @@ describe('CoClient-Native', function() {
 		});
 	});
 
-	describe('#connectPromise()', function() {
+	describe('#connectAsync()', function() {
 		it('should connect with a single connection', function() {
 			return co(function*() {
 				let client = new pg.Client(connString);
 
-				yield client.connectPromise();
+				yield client.connectAsync();
 
 				should.exist(client);
+			});
+		});
+	});
+
+	describe('#queryAsync()', function() {
+		it('should query with single connection', function() {
+			return co(function*() {
+				let client = new pg.Client(connString);
+				yield client.connectAsync();
+
+				let result = yield client.queryAsync(query);
+
+				should.exist(result);
+			});
+		});
+
+
+		it('should query with a pooled connection', function() {
+			return co(function*() {
+				let connectResults = yield pg.connectAsync(connString);
+				let client = connectResults[0];
+				let clientDone = connectResults[1];
+
+				let result = yield client.queryAsync(query);
+				clientDone();
+
+				should.exist(result);
 			});
 		});
 	});
 
 	describe('#queryPromise()', function() {
-		it('should query with single connection', function() {
+		it('should be an alias of #queryAsync', function() {
 			return co(function*() {
 				let client = new pg.Client(connString);
-				yield client.connectPromise();
-
-				let result = yield client.queryPromise(query);
-
-				should.exist(result);
-			});
-		});
-
-
-		it('should query with a pooled connection', function() {
-			return co(function*() {
-				let connectResults = yield pg.connectPromise(connString);
-				let client = connectResults[0];
-				let clientDone = connectResults[1];
-
-				let result = yield client.queryPromise(query);
-				clientDone();
-
-				should.exist(result);
-			});
-		});
-	});
-
-	describe('#connect_()', function() {
-		it('should connect with a single connection', function() {
-			return co(function*() {
-				let client = new pg.Client(connString);
-
-				yield client.connect_();
-
-				should.exist(client);
-			});
-		});
-	});
-
-	describe('#query_()', function() {
-		it('should query with single connection', function() {
-			return co(function*() {
-				let client = new pg.Client(connString);
-				yield client.connect_();
-
-				let result = yield client.query_(query);
-
-				should.exist(result);
-			});
-		});
-
-
-		it('should query with a pooled connection', function() {
-			return co(function*() {
-				let connectResults = yield pg.connect_(connString);
-				let client = connectResults[0];
-				let clientDone = connectResults[1];
-
-				let result = yield client.query_(query);
-				clientDone();
-
-				should.exist(result);
+				client.queryPromise.should.equal(client.queryAsync);
 			});
 		});
 	});

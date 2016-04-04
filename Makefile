@@ -7,8 +7,8 @@ build: node_modules
 node_modules: package.json
 	@npm install ${npm_flags}
 
-test:
-	@mocha --timeout 2s --require=test
+test: build
+	@mocha --harmony --timeout 2s --require=test
 
 lint: jscs eslint
 

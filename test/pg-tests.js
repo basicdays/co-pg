@@ -15,10 +15,10 @@ describe('CoPG', function() {
 		});
 	});
 
-	describe('#connectPromise()', function() {
+	describe('#connectAsync()', function() {
 		it('should connect a pool', function() {
 			return co(function*() {
-				let results = yield pg.connectPromise(connString);
+				let results = yield pg.connectAsync(connString);
 				let client = results[0];
 				let clientDone = results[1];
 
@@ -28,16 +28,9 @@ describe('CoPG', function() {
 		});
 	});
 
-	describe('#connect_()', function() {
-		it('should connect a pool', function() {
-			return co(function*() {
-				let results = yield pg.connect_(connString);
-				let client = results[0];
-				let clientDone = results[1];
-
-				should.exist(client);
-				clientDone();
-			});
+	describe('#connectPromise()', function() {
+		it('should be an alias to #connectAsync', function() {
+			pg.connectPromise.should.equal(pg.connectAsync);
 		});
 	});
 });
