@@ -79,7 +79,7 @@ into separate variables for cleaner code.
 
 ```js
 let co = require('co');
-let pg = require('../')(require('pg'));
+let pg = require('co-pg')(require('pg'));
 
 let connectionString = 'postgres://postgres:1234@localhost/postgres';
 
