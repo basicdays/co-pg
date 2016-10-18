@@ -1,6 +1,6 @@
 {
   "name": "co-pg",
-  "version": "2.1.0-alpha.1",
+  "version": "2.0.1",
   "description": "Co wrapper for node-postgres",
   "repository": {
     "type": "git",
