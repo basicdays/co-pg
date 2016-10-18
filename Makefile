@@ -1,19 +1,12 @@
-export PATH := bin:node_modules/.bin:${PATH}
-
-npm_flags := --loglevel=http --progress=false
+PATH := node_modules/.bin:${PATH}
 
 build: node_modules
 
 node_modules: package.json
-	@npm install ${npm_flags}
+	npm install
 
 test: build
-	@mocha --harmony --timeout 2s --require=test
-
-lint: jscs eslint
-
-jscs:
-	jscs .
+	mocha --harmony --timeout 2s --require=test/index.js
 
 eslint:
 	eslint .
@@ -25,4 +18,4 @@ maintainer-clean: clean
 	@rm -rf node_modules
 
 
-.PHONY: build test jshint clean maintainer-clean
+.PHONY: build test eslint clean maintainer-clean

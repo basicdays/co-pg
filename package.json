@@ -1,6 +1,6 @@
 {
   "name": "co-pg",
-  "version": "2.0.0",
+  "version": "2.1.0-alpha.1",
   "description": "Co wrapper for node-postgres",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "homepage": "https://github.com/basicdays/co-pg",
   "engines": {
-    "node": "^0.12.0, ^4.0.0, ^5.0.0"
+    "node": "^0.12.0, ^4.0.0, ^5.0.0, ^6.0.0"
   },
   "dependencies": {
     "promissory": "^1.0.0"
@@ -37,8 +37,7 @@
     "co-fs": "^1.2.0",
     "commander": "^2.5.0",
     "eslint": "^2.6.0",
-    "jscs": "^2.11.0",
-    "mocha": "^2.0.1",
+    "mocha": "^3.1.2",
     "pg": "^4.5.2",
     "pg-native": "^1.10.0",
     "pg.js": "^4.1.1"
