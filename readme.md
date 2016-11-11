@@ -28,6 +28,8 @@ Supports Node Engines:
 - v0.12 (requires `--harmony` flag to work)
 - v4
 - v5
+- v6
+- v7
 
 
 ## API Additions
