@@ -2,7 +2,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = 'debian/jessie64'
   config.vm.hostname = 'co-pg.basicdays.com'
 
-  config.vm.network 'private_network', ip: '10.10.200.20', nic_type: 'virtio'
+  config.vm.network 'private_network', ip: '10.20.200.20', nic_type: 'virtio'
 
   config.ssh.forward_agent = true
 

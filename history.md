@@ -1,3 +1,14 @@
+2.0.2 / 2016-11-11
+==================
+
+ * Fix: Resolve #10 again: removed engine list from package.json so yarn doesn't prevent this from working in the future
+
+
+2.0.1 / 2016-10-18
+==================
+
+ * Fix: Resolve #10: added node v6 to package.json engine list so yarn doesn't complain
+
 2.0.0 / 2016-04-03
 ==================
 
